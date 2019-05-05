@@ -65,6 +65,7 @@ public class GameOverState extends State {
                 if (touchPos.x > camera.position.x - BUTTON_POSITION - curExit.getWidth() && touchPos.x < camera.position.x - BUTTON_POSITION) {
                     if (touchPos.y > camera.position.y - curExit.getHeight() && touchPos.y < camera.position.y) {
                         FingRun.statistics.saveScore(FingRun.statistics);
+                        FingRun.music.dispose();
                         Gdx.app.exit();
                     }
                 }
@@ -101,5 +102,13 @@ public class GameOverState extends State {
         youDead.dispose();
         deadFinger.dispose();
         background.dispose();
+        tryAgainButtonOff.dispose();
+        tryAgainButtonOn.dispose();
+        curTryAgain.dispose();
+        exitButtonOff.dispose();
+        exitButtonOn.dispose();
+        curExit.dispose();
+        bestScore.dispose();
+        font.dispose();
     }
 }

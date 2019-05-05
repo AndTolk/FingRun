@@ -95,6 +95,7 @@ public class MenuState extends State {
             if (curExit == exitButtonOn)
                 if (touchPos.x > camera.position.x - curExit.getWidth() / 2 && touchPos.x < camera.position.x + curExit.getWidth() / 2 &&
                         touchPos.y > camera.position.y - curExit.getHeight() * 2 && touchPos.y < camera.position.y - curExit.getHeight()) {
+                    FingRun.music.dispose();
                     FingRun.statistics.saveScore(FingRun.statistics);
                     Gdx.app.exit();
                 }
@@ -158,5 +159,10 @@ public class MenuState extends State {
         exitButtonOff.dispose();
         exitButtonOn.dispose();
         curExit.dispose();
+        soundButtonOff.dispose();
+        soundButtonOn.dispose();
+        curSoundButton.dispose();
+        bestScore.dispose();
+        font.dispose();
     }
 }

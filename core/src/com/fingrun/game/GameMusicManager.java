@@ -27,4 +27,8 @@ public class GameMusicManager {
             return true;
         return false;
     }
+
+    public void dispose(){
+        music.dispose();
+    }
 }

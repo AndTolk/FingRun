@@ -89,14 +89,12 @@ public class PlayState extends State {
     @Override
     public void dispose() {
         background.dispose();
+        ground.dispose();
+        scorePicture.dispose();
+        finger.dispose();
         obstacle0.dispose();
         obstacle1.dispose();
         font.dispose();
-        finger.dispose();
-        ground.dispose();
-        obstacle0.dispose();
-        obstacle1.dispose();
-        scorePicture.dispose();
     }
 
     private void updateGround() {

@@ -96,6 +96,14 @@ public class Obstacle {
     }
 
     public void dispose() {
+        barrierOrangeHammer.dispose();
+        barrierBlueHammer.dispose();
+        barrierRedHammer.dispose();
+        barrierNightstand.dispose();
         barrierPinRed.dispose();
+        barrierPinYellow.dispose();
+        barrierPinBlue.dispose();
+        barrierPinPurple.dispose();
+        curBarrier.dispose();
     }
 }
