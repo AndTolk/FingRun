@@ -40,42 +40,48 @@ public class GameOverState extends State {
         font = new BitmapFont(Gdx.files.internal("bestScoreText.fnt"), Gdx.files.internal("bestScoreText.png"), false);
     }
 
-    @Override
-    protected void handleInput() {
+    private void exitButtonAnimation() {
         if (Gdx.input.isTouched()) {
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            touchPos = camera.unproject(touchPos);
-            if (touchPos.x > camera.position.x - BUTTON_POSITION - curExit.getWidth() && touchPos.x < camera.position.x - BUTTON_POSITION) {
-                if (touchPos.y > camera.position.y - curExit.getHeight() && touchPos.y < camera.position.y)
-                    curExit = exitButtonOn;
-                else
-                    curExit = exitButtonOff;
-            } else
+            if (touchPos.x > camera.position.x - BUTTON_POSITION - exitButtonOff.getWidth() && touchPos.x < camera.position.x - BUTTON_POSITION &&
+                    touchPos.y > camera.position.y - exitButtonOff.getHeight() && touchPos.y < camera.position.y)
+                curExit = exitButtonOn;
+            else
                 curExit = exitButtonOff;
-            if (touchPos.x > camera.position.x + BUTTON_POSITION && touchPos.x < camera.position.x + BUTTON_POSITION + curTryAgain.getWidth()) {
-                if (touchPos.y > camera.position.y - curTryAgain.getHeight() && touchPos.y < camera.position.y)
-                    curTryAgain = tryAgainButtonOn;
-                else
-                    curTryAgain = tryAgainButtonOff;
-            } else
-                curTryAgain = tryAgainButtonOff;
         }
         if (!Gdx.input.isTouched()) {
             if (curExit == exitButtonOn) {
-                if (touchPos.x > camera.position.x - BUTTON_POSITION - curExit.getWidth() && touchPos.x < camera.position.x - BUTTON_POSITION) {
-                    if (touchPos.y > camera.position.y - curExit.getHeight() && touchPos.y < camera.position.y) {
-                        FingRun.statistics.saveScore(FingRun.statistics);
-                        FingRun.music.dispose();
-                        Gdx.app.exit();
-                    }
+                if (touchPos.x > camera.position.x - BUTTON_POSITION - exitButtonOff.getWidth() && touchPos.x < camera.position.x - BUTTON_POSITION &&
+                        touchPos.y > camera.position.y - exitButtonOff.getHeight() && touchPos.y < camera.position.y) {
+                    FingRun.statistics.saveScore(FingRun.statistics);
+                    FingRun.music.dispose();
+                    Gdx.app.exit();
                 }
             }
-            if (curTryAgain == tryAgainButtonOn)
-                if (touchPos.x > camera.position.x + BUTTON_POSITION && touchPos.x < camera.position.x + BUTTON_POSITION + curTryAgain.getWidth()) {
-                    if (touchPos.y > camera.position.y - curTryAgain.getHeight() && touchPos.y < camera.position.y)
-                        gsm.set(new MenuState(gsm));
-                }
         }
+    }
+
+    private void tryAgainButtonAnimation() {
+        if (Gdx.input.isTouched()) {
+            if (touchPos.x > camera.position.x + BUTTON_POSITION && touchPos.x < camera.position.x + BUTTON_POSITION + tryAgainButtonOff.getWidth() &&
+                    touchPos.y > camera.position.y - tryAgainButtonOff.getHeight() && touchPos.y < camera.position.y)
+                curTryAgain = tryAgainButtonOn;
+            else
+                curTryAgain = tryAgainButtonOff;
+        }
+        if (!Gdx.input.isTouched()) {
+            if (curTryAgain == tryAgainButtonOn)
+                if (touchPos.x > camera.position.x + BUTTON_POSITION && touchPos.x < camera.position.x + BUTTON_POSITION + tryAgainButtonOff.getWidth() &&
+                        touchPos.y > camera.position.y - tryAgainButtonOff.getHeight() && touchPos.y < camera.position.y)
+                    gsm.set(new MenuState(gsm));
+        }
+    }
+
+    @Override
+    protected void handleInput() {
+        touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+        touchPos = camera.unproject(touchPos);
+        exitButtonAnimation();
+        tryAgainButtonAnimation();
     }
 
     @Override
@@ -90,10 +96,10 @@ public class GameOverState extends State {
         sb.draw(background, 0, 0);
         sb.draw(youDead, FingRun.WIDTH / 2 - youDead.getWidth() / 2, FingRun.HEIGHT - youDead.getHeight() * 2);
         sb.draw(deadFinger, FingRun.WIDTH / 2 - deadFinger.getWidth() / 2, deadFinger.getHeight());
-        sb.draw(curTryAgain, camera.position.x + BUTTON_POSITION, camera.position.y - curTryAgain.getHeight());
+        sb.draw(curTryAgain, camera.position.x + BUTTON_POSITION, camera.position.y - curTryAgain.getHeight() + 7);
         sb.draw(curExit, camera.position.x - BUTTON_POSITION - curExit.getWidth(), camera.position.y - curExit.getHeight());
-        sb.draw(bestScore, camera.position.x - bestScore.getWidth(), FingRun.HEIGHT / 2 + bestScore.getHeight() / 2);
-        font.draw(sb, "" + FingRun.statistics.getBestScore(), camera.position.x + 20, FingRun.HEIGHT / 2 + bestScore.getHeight() + 15);
+        sb.draw(bestScore, camera.position.x - bestScore.getWidth() + exitButtonOff.getWidth()/2 - 10, FingRun.HEIGHT / 2 + bestScore.getHeight() / 2);
+        font.draw(sb, "" + FingRun.statistics.getBestScore(), camera.position.x + exitButtonOff.getWidth()/2 + 10, FingRun.HEIGHT / 2 + bestScore.getHeight() + 15);
         sb.end();
     }
 

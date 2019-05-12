@@ -52,40 +52,40 @@ public class MenuState extends State {
 
     private void playButtonAnimation() {
         if (Gdx.input.isTouched()) {
-            if (touchPos.x > camera.position.x - curPlay.getWidth() / 2 && touchPos.x < camera.position.x + curPlay.getWidth() / 2 &&
-                    touchPos.y > camera.position.y + curPlay.getHeight() / 2 && touchPos.y < camera.position.y + 3 * curPlay.getHeight() / 2)
+            if (touchPos.x > camera.position.x - playButtonOff.getWidth() / 2 && touchPos.x < camera.position.x + playButtonOff.getWidth() / 2 &&
+                    touchPos.y > camera.position.y + playButtonOff.getHeight() / 2 && touchPos.y < camera.position.y + 3 * playButtonOff.getHeight() / 2)
                 curPlay = playButtonOn;
             else
                 curPlay = playButtonOff;
         }
         if (!Gdx.input.isTouched()) {
             if (curPlay == playButtonOn)
-                if (touchPos.x > camera.position.x - curPlay.getWidth() / 2 && touchPos.x < camera.position.x + curPlay.getWidth() / 2 &&
-                        touchPos.y > camera.position.y + curPlay.getHeight() / 2 && touchPos.y < camera.position.y + 3 * curPlay.getHeight() / 2)
+                if (touchPos.x > camera.position.x - playButtonOff.getWidth() / 2 && touchPos.x < camera.position.x + playButtonOff.getWidth() / 2 &&
+                        touchPos.y > camera.position.y + playButtonOff.getHeight() / 2 && touchPos.y < camera.position.y + 3 * playButtonOff.getHeight() / 2)
                     gsm.set(new PlayState(gsm));
         }
     }
 
     private void achievementsButtonAnimation() {
         if (Gdx.input.isTouched()) {
-            if (touchPos.x > camera.position.x - curAchievements.getWidth() / 2 && touchPos.x < camera.position.x + curAchievements.getWidth() / 2 &&
-                    touchPos.y > camera.position.y - curAchievements.getHeight() / 2 - 25 && touchPos.y < camera.position.y + curAchievements.getHeight() / 2 - 25)
+            if (touchPos.x > camera.position.x - achievementsButtonOff.getWidth() / 2 && touchPos.x < camera.position.x + achievementsButtonOff.getWidth() / 2 &&
+                    touchPos.y > camera.position.y - achievementsButtonOff.getHeight() / 2 - 25 && touchPos.y < camera.position.y + achievementsButtonOff.getHeight() / 2 - 25)
                 curAchievements = achievementsButtonOn;
             else
                 curAchievements = achievementsButtonOff;
         }
         if (!Gdx.input.isTouched()) {
             if (curAchievements == achievementsButtonOn)
-                if (touchPos.x > camera.position.x - curAchievements.getWidth() / 2 && touchPos.x < camera.position.x + curAchievements.getWidth() / 2 &&
-                        touchPos.y > camera.position.y - curAchievements.getHeight() / 2 - 25 && touchPos.y < camera.position.y + curAchievements.getHeight() / 2 - 25)
+                if (touchPos.x > camera.position.x - achievementsButtonOff.getWidth() / 2 && touchPos.x < camera.position.x + achievementsButtonOff.getWidth() / 2 &&
+                        touchPos.y > camera.position.y - achievementsButtonOff.getHeight() / 2 - 25 && touchPos.y < camera.position.y + achievementsButtonOff.getHeight() / 2 - 25)
                     ;//Go to achievement state
         }
     }
 
     private void exitButtonAnimation() {
         if (Gdx.input.isTouched()) {
-            if (touchPos.x > camera.position.x - curExit.getWidth() / 2 && touchPos.x < camera.position.x + curExit.getWidth() / 2 &&
-                    touchPos.y > camera.position.y - curExit.getHeight() * 2 && touchPos.y < camera.position.y - curExit.getHeight())
+            if (touchPos.x > camera.position.x - exitButtonOff.getWidth() / 2 && touchPos.x < camera.position.x + exitButtonOff.getWidth() / 2 &&
+                    touchPos.y > camera.position.y - exitButtonOff.getHeight() * 2 && touchPos.y < camera.position.y - exitButtonOff.getHeight())
                 curExit = exitButtonOn;
             else
                 curExit = exitButtonOff;
@@ -93,8 +93,8 @@ public class MenuState extends State {
         }
         if (!Gdx.input.isTouched()) {
             if (curExit == exitButtonOn)
-                if (touchPos.x > camera.position.x - curExit.getWidth() / 2 && touchPos.x < camera.position.x + curExit.getWidth() / 2 &&
-                        touchPos.y > camera.position.y - curExit.getHeight() * 2 && touchPos.y < camera.position.y - curExit.getHeight()) {
+                if (touchPos.x > camera.position.x - exitButtonOff.getWidth() / 2 && touchPos.x < camera.position.x + exitButtonOff.getWidth() / 2 &&
+                        touchPos.y > camera.position.y - exitButtonOff.getHeight() * 2 && touchPos.y < camera.position.y - exitButtonOff.getHeight()) {
                     FingRun.music.dispose();
                     FingRun.statistics.saveScore(FingRun.statistics);
                     Gdx.app.exit();
