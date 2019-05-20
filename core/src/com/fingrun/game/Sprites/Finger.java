@@ -8,9 +8,9 @@ import com.badlogic.gdx.math.Vector3;
 public class Finger {
 
     private static final int GRAVITY = 17; //Constant responsible for gravity.Enter a positive number to change it.
-    private float Movement = 500; // Responsible for initial velocity
+    private float Movement = 600; // Responsible for initial velocity
     private static final int POSITION_ON_GROUND = 150;  //Constant responsible for the position of the finger on the ground
-    private static final int JUMP_HEIGHT = 305; //Constant responsible for the height of the jump
+    private static final int JUMP_HEIGHT = 325; //Constant responsible for the height of the jump
 
     private Vector3 position;
     private Vector3 velocity;
@@ -22,8 +22,8 @@ public class Finger {
         position = new Vector3(x, POSITION_ON_GROUND, 0);
         velocity = new Vector3(0, 0, 0);
         texture = new Texture("finger.png");
-        fingerAnimation = new Animation(new TextureRegion(texture), 4, 0.5f);
-        boundFinger = new Rectangle(x, y, texture.getWidth() / 4, texture.getHeight() / 4);
+        fingerAnimation = new Animation(new TextureRegion(texture), 6, 0.9f);
+        boundFinger = new Rectangle(x, y + 5, texture.getWidth() / 6 - 50, texture.getHeight());
     }
 
     public Vector3 getPosition() {
@@ -45,7 +45,7 @@ public class Finger {
             position.add(0, velocity.y, 0);
             velocity.scl(1 / dt);
         }
-        boundFinger.setPosition(position.x, position.y);
+        boundFinger.setPosition(position.x , position.y + 5);
 
     }
 
